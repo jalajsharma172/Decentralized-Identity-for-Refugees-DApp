@@ -2,8 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Menu, X, Sun, Moon, Home, User, FileText, Info, HelpCircle, Book, Shield, Settings } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
-
-
+import Wallet from "../components/Wallet";
 
 export function Layout() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -11,17 +10,15 @@ export function Layout() {
 
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Dashboard', href: '/dashboard', icon: User },
+    { name: 'Verify Identity', href: '/userdocuments', icon: Document },
     { name: 'Register', href: '/register', icon: FileText },
-    { name: 'About', href: '/about', icon: Info },
-    { name: 'FAQ', href: '/faq', icon: HelpCircle },
-    { name: 'Documentation', href: '/docs', icon: Book },
+    // { name: 'Dashboard', href: '/dashboard', icon: User },
+    // { name: 'About', href: '/about', icon: Info },
+    // { name: 'FAQ', href: '/faq', icon: HelpCircle },
+    // { name: 'Documentation', href: '/docs', icon: Book },
     { name: 'Admin', href: '/admin', icon: Settings },
   ];
 
-  // { name: 'Contact', href: '/contact', icon: Mail },
-  // { name: 'Terms', href: '/terms', icon: Shield },
-  // 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -36,9 +33,9 @@ export function Layout() {
                   <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">RefugeeDID</span>
                 </Link>
               </div>
-
+              <Wallet />
               {/* Desktop Navigation */}
-              <div className=" md:flex md:items-center md:space-x-4">
+              <div className="hidden md:flex md:items-center md:space-x-4">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
@@ -48,6 +45,7 @@ export function Layout() {
                     {item.name}
                   </Link>
                 ))}
+
                 <button
                   onClick={toggleTheme}
                   className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
